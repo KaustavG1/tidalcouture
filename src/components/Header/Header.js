@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
+import Divider from '../common/Divider'
+
 const StyledNav = styled.nav`
   background: #e8e6e6;
+  width: 100%;
+  position: sticky;
+  top: 0px;
 `
 
 const NavBar = styled.nav`
@@ -63,14 +68,15 @@ const StyledSearchBar = styled.div`
   width: 100vw;
   height: 50px;
   background: #e8e6e6;
+  transition: all 0.5s ease;
 `
 
-const Divider = styled.div`
-  height: 1px;
-  background-color: #969696;
-  margin-right: 20px;
-  margin-left: 20px;
-
+const SearchWrapper = styled.div`
+  opacity: ${({ open }) => open ? 1 : 0};
+  visibility: ${({ open }) => open ? 'visible' : 'hidden'};
+  position: absolute;
+  top: 100%;
+  transition: all 0.4s ease;
 `
 
 function Header() {
@@ -87,15 +93,19 @@ function Header() {
       </LeftUL>
       <StyledLogo onClick={logoRedirect}>TIDALCOUTURE</StyledLogo>
       <RightUL>
-        <StyledLi onClick={() => setSearchBarOpen(!searchBarOpen)}>S</StyledLi>
+        <StyledLi onClick={() => setSearchBarOpen(!searchBarOpen)}>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </StyledLi>
         <StyledLi>Sign in</StyledLi>
-        <StyledLi>Cart</StyledLi>
+        <StyledLi>
+          <i class="fa-solid fa-cart-shopping"></i>
+        </StyledLi>
       </RightUL>
     </NavBar>
-    {searchBarOpen && <>
+    <SearchWrapper open={searchBarOpen}>
       <Divider />
       <StyledSearchBar onClick={() => setSearchBarOpen(false)}/>
-    </>}
+    </SearchWrapper>
   </StyledNav>
 }
 
