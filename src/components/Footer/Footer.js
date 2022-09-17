@@ -23,12 +23,12 @@ const StyledColumn = styled.ul`
 `
 
 const StyledItem = styled.li`
-
+  padding-bottom: 5px;
 `
 
 const CopyrightText = styled.div`
   text-align: center;
-  padding: 10px;
+  padding-top: 10px;
 `
 
 function Footer() {

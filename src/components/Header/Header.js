@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Divider from '../common/Divider'
 
 const StyledNav = styled.nav`
-  background: #e8e6e6;
+  // background: #e8e6e6;
   width: 100%;
   position: sticky;
   top: 0px;
@@ -67,7 +67,7 @@ const StyledLi = styled.li`
 const StyledSearchBar = styled.div`
   width: 100vw;
   height: 50px;
-  background: #e8e6e6;
+  // background: #e8e6e6;
   transition: all 0.5s ease;
 `
 
