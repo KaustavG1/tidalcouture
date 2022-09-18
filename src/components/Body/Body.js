@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledFooter = styled.footer`
+const StyledContent = styled.footer`
   width: 100%;
   height: 100vh;
   bottom: 0px;
@@ -8,12 +8,12 @@ const StyledFooter = styled.footer`
   flex-direction: column;
 `
 
-function Footer() {
+function Body() {
   return (
-    <StyledFooter>
-      This is a footer
-    </StyledFooter>
+    <StyledContent>
+      {/* This is the main content */}
+    </StyledContent>
   )
 }
 
-export default Footer
+export default Body

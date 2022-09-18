@@ -38,6 +38,7 @@ function Footer() {
       <StyledContent>
         <StyledColumn>
           <StyledItem>About us</StyledItem>
+          <StyledItem>Shipping & Returns</StyledItem>
           <StyledItem>Terms of use</StyledItem>
           <StyledItem>Privacy policy</StyledItem>
         </StyledColumn>

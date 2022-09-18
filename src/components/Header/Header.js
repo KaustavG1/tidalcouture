@@ -2,9 +2,9 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 import Divider from '../common/Divider'
+import SearchBar from '../SearchBar/SearchBar'
 
 const StyledNav = styled.nav`
-  // background: #e8e6e6;
   width: 100%;
   position: sticky;
   top: 0px;
@@ -30,6 +30,7 @@ const LeftUL = styled.ul`
 const StyledLogo = styled.span`
   flex: 1;
   text-align: center;
+  text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
   font-size: 16px;
@@ -64,14 +65,8 @@ const StyledLi = styled.li`
   }
 `
 
-const StyledSearchBar = styled.div`
-  width: 100vw;
-  height: 50px;
-  // background: #e8e6e6;
-  transition: all 0.5s ease;
-`
-
 const SearchWrapper = styled.div`
+  width: 100%;
   opacity: ${({ open }) => open ? 1 : 0};
   visibility: ${({ open }) => open ? 'visible' : 'hidden'};
   position: absolute;
@@ -81,8 +76,21 @@ const SearchWrapper = styled.div`
 
 function Header() {
   const [ searchBarOpen, setSearchBarOpen ] = useState(false)
+  const [ childData, setChildData ] = useState({})
+
+  const toggleSearchBar = (event) => {
+    event.stopPropagation()
+    setSearchBarOpen(!searchBarOpen)
+    if (searchBarOpen) {
+      setTimeout(childData.data, 500)
+    }
+
+    childData.focus()
+  }
 
   const logoRedirect = () => console.log("Redirecting")
+
+  const passToParent = (data, focus) => setChildData({data, focus})
 
   return <StyledNav>
     <NavBar>
@@ -91,20 +99,24 @@ function Header() {
         <StyledLi>For him</StyledLi>
         <StyledLi>For her</StyledLi>
       </LeftUL>
-      <StyledLogo onClick={logoRedirect}>TIDALCOUTURE</StyledLogo>
+      <StyledLogo onClick={logoRedirect}>Tidalcouture</StyledLogo>
       <RightUL>
-        <StyledLi onClick={() => setSearchBarOpen(!searchBarOpen)}>
-          <i class="fa-solid fa-magnifying-glass"></i>
+        <StyledLi onClick={toggleSearchBar}>
+          {
+            searchBarOpen ?
+            <i className="fa-solid fa-xmark"></i> :
+            <i className="fa-solid fa-magnifying-glass"></i>
+          }
         </StyledLi>
         <StyledLi>Sign in</StyledLi>
         <StyledLi>
-          <i class="fa-solid fa-cart-shopping"></i>
+          <i className="fa-solid fa-cart-shopping"></i>
         </StyledLi>
       </RightUL>
     </NavBar>
     <SearchWrapper open={searchBarOpen}>
       <Divider />
-      <StyledSearchBar onClick={() => setSearchBarOpen(false)}/>
+      <SearchBar passToParent={passToParent} />
     </SearchWrapper>
   </StyledNav>
 }
