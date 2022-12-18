@@ -2,8 +2,8 @@ function App() {
   return (
     <div
       id="adfsdfsxdfcgvhbjnkml"
-      className="adfsdfsxdfcgvhbjnkmlzdxfcgvbnjm"
       aria-label="adfsdfsxdfcgvhbjnkmlzdxfcgvbnjm"
+      className="text-3xl font-bold underline"
     >
       Hello World
     </div>
