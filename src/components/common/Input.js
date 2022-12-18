@@ -13,14 +13,13 @@ const StyledInput = styled.input`
   }
 `
 
-const Input = React.forwardRef((props, ref) => {
+const Input = ({childInputRef, ...rest}) => {
   return (
     <StyledInput
-      ref={ref}
-      autoFocus
-      {...props}
+      ref={childInputRef}
+      {...rest}
     />
   )
-})
+}
 
 export default Input

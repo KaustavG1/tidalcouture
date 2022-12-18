@@ -23,7 +23,23 @@ const StyledColumn = styled.ul`
 `
 
 const StyledItem = styled.li`
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  color: #696969;
+  font-size: 12px;
+`
+
+const StyledAnchor = styled.a`
   padding-bottom: 5px;
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 10px;
+
+  &:hover {
+    color: #696969;
+  }
 `
 
 const CopyrightText = styled.div`
@@ -37,15 +53,16 @@ function Footer() {
       <Divider />
       <StyledContent>
         <StyledColumn>
-          <StyledItem>About us</StyledItem>
-          <StyledItem>Shipping & Returns</StyledItem>
-          <StyledItem>Terms of use</StyledItem>
-          <StyledItem>Privacy policy</StyledItem>
+          <StyledItem>Company Policies</StyledItem>
+          <StyledAnchor>Shipping & Returns</StyledAnchor>
+          <StyledAnchor>Terms of use</StyledAnchor>
+          <StyledAnchor>Privacy policy</StyledAnchor>
         </StyledColumn>
         <StyledColumn>
-          <StyledItem>Facebook</StyledItem>
-          <StyledItem>Twitter</StyledItem>
-          <StyledItem>Instagram</StyledItem>
+          <StyledItem>Follow us on</StyledItem>
+          <StyledAnchor href="https://www.facebook.com">Facebook</StyledAnchor>
+          <StyledAnchor href="https://www.twitter.com">Twitter</StyledAnchor>
+          <StyledAnchor href="https://www.instagram.com">Instagram</StyledAnchor>
         </StyledColumn>
       </StyledContent>
       <CopyrightText>&copy; Copyright TIDALCOUTURE&nbsp; | &nbsp;All rights reserved</CopyrightText>

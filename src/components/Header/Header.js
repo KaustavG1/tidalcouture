@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 
 import Divider from '../common/Divider'
@@ -68,29 +68,22 @@ const StyledLi = styled.li`
 const SearchWrapper = styled.div`
   width: 100%;
   opacity: ${({ open }) => open ? 1 : 0};
-  visibility: ${({ open }) => open ? 'visible' : 'hidden'};
   position: absolute;
   top: 100%;
   transition: all 0.4s ease;
 `
 
 function Header() {
+  const childInputRef = useRef(null)
+
   const [ searchBarOpen, setSearchBarOpen ] = useState(false)
-  const [ childData, setChildData ] = useState({})
 
-  const toggleSearchBar = (event) => {
-    event.stopPropagation()
+  const toggleSearchBar = () => {
+    !searchBarOpen && childInputRef.current && childInputRef.current.focus()
     setSearchBarOpen(!searchBarOpen)
-    if (searchBarOpen) {
-      setTimeout(childData.data, 500)
-    }
-
-    childData.focus()
   }
 
   const logoRedirect = () => console.log("Redirecting")
-
-  const passToParent = (data, focus) => setChildData({data, focus})
 
   return <StyledNav>
     <NavBar>
@@ -116,7 +109,7 @@ function Header() {
     </NavBar>
     <SearchWrapper open={searchBarOpen}>
       <Divider />
-      <SearchBar passToParent={passToParent} />
+      <SearchBar childInputRef={childInputRef}/>
     </SearchWrapper>
   </StyledNav>
 }

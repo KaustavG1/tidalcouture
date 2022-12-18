@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { useForm } from "react-hook-form";
+import { useFormik } from 'formik';
 
 import Input from '../common/Input'
 
@@ -8,6 +8,11 @@ const Wrapper = styled.form`
   display: flex;
   flex-direction: row;
   width: 100%;
+
+  input:focus::placeholder {
+    opacity: 1;
+    color: #999999;
+  }
 `
 
 const Search = styled.button`
@@ -16,30 +21,26 @@ const Search = styled.button`
   background-color: transparent;
 `
 
-function SearchBar({ passToParent }) {
-  const { handleSubmit, reset, register } = useForm()
-  const { ref, ...rest } = register('search');
-  const searchRef = useRef(null)
+const SearchBar = props => {
 
-  const submitData = data => {
-    console.log(`Searching for ${data}`)
-  }
-
-  const focus = () => searchRef.current.focus()
-
-  useEffect(() => passToParent(reset, focus), [])
+  const formik = useFormik({
+    initialValues: {
+      searchString: '',
+    },
+    onSubmit: values => {
+      console.log(`Searching for ${values.searchString}`);
+    },
+  })
 
   return (
-    <Wrapper onSubmit={handleSubmit(({ search }) => submitData(search))}>
+    <Wrapper onSubmit={formik.handleSubmit}>
       <Input
-        {...rest}
-        name="search"
+        id="searchString"
+        key="searchString"
+        type="text"
         placeholder="Search here"
-        defaultValue=""
-        ref={(e) => {
-          ref(e)
-          searchRef.current = e
-        }}
+        onChange={formik.handleChange}
+        {...props}
       />
       <Search type="submit">
         <i className="fa-solid fa-magnifying-glass"></i>
