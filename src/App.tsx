@@ -1,12 +1,12 @@
 function App() {
   return (
-    <div
+    <h1
       id="adfsdfsxdfcgvhbjnkml"
       aria-label="adfsdfsxdfcgvhbjnkmlzdxfcgvbnjm"
       className="text-3xl font-bold underline"
     >
       Hello World
-    </div>
+    </h1>
   );
 }
 
